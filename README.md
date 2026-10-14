@@ -1,143 +1,63 @@
-# Istari
+<p align="center"><img src="docs/img/banner.png" alt="Istari, a theme for Obsidian" width="100%"></p>
 
-A dark, scholarly theme for Obsidian. Warm ink, parchment text, restrained gold, and Garamond type, set like a well-made book. Made for notes that hold mathematics, and for readers who write in the margin.
+Istari is the Obsidian theme I wanted while reading a differential geometry textbook at two in the morning. Most dark themes are built for code. I wanted one built for a book: a warm, dim page, Garamond type, theorems that look like theorems, and somewhere to put the arguments I have with the author.
 
-![Istari in Reading view, with margin sidenotes and a definition callout](docs/img/reading-view.png)
+**[See it in full →](https://thescholium.github.io/istari)**
 
-**Website:** [thescholium.github.io/istari](https://thescholium.github.io/istari)
+![A note in Istari: definition and theorem callouts, display math, and sidenotes in the margin](docs/img/reading-view.png)
 
-## Contents
+## What makes it different
 
-- [Features](#features)
-- [Installation](#installation)
-- [Mathematical callouts](#mathematical-callouts)
-- [Sidenotes](#sidenotes)
-- [Vellum, for long-form writing](#vellum-for-long-form-writing)
-- [Export to PDF](#export-to-pdf)
-- [Plugin support](#plugin-support)
-- [Companion plugin](#companion-plugin)
-- [License](#license)
+**It is set like a book.** EB Garamond for text, Cormorant Garamond for titles, JetBrains Mono for code. Old-style figures in sentences, lining figures in tables. Bold and links are small capitals instead of heavy black. Tables use horizontal rules only, the way a printed paper sets them.
 
-## Features
+**Theorems look like theorems.** There are callouts for `theorem`, `definition`, `lemma`, `proposition`, `corollary`, `proof`, `axiom`, `conjecture`, `example`, `remark`, `intuition` and `exercise`. Results are set in italics. Proofs end with ∎. Every callout uses the same gold, so a page with twelve of them still reads calmly. Only warnings turn a pale red.
 
-- **Book typography.** EB Garamond for text, Cormorant Garamond for titles, JetBrains Mono for code. Old-style figures in prose, lining figures in tables and code. Bold and links are set in small capitals.
-- **Fonts are built in.** All fonts are embedded in `theme.css`. The theme makes no network requests and looks the same offline.
-- **Callouts for mathematics.** Theorem, definition, lemma, proposition, corollary, proof, and more, each with its own icon and title. Statements of results are set in italics. Proofs end with a tombstone.
-- **Sidenotes.** With the companion plugin, footnotes move into the right-hand margin, beside the line that cites them, in Reading view and in Live Preview.
-- **Quiet details.** Booktabs tables with horizontal rules only. A small star before each second-level heading. A thin gold rule with a diamond for `---`. Properties set as small-caps labels.
-- **Reading view and Live Preview agree.** Headings, rules, tables, tags, and quotes look the same in both modes.
-- **Mobile.** Smaller type and margins on phones and tablets. Sidenotes open in place under their line.
-- **Graph, canvas, and icons.** A star-chart graph view, canvas colors from the same palette, and hand-drawn replacement icons for the ribbon.
+**Footnotes go in the margin**, with the free [Istari Companion](https://github.com/TheScholium/istari-companion) plugin. Start one with `? ` and it becomes a *query*, so your open questions stand out from your explanations.
 
-Istari is a dark theme only. If Obsidian is set to light mode, Istari stays dark.
+**It works offline.** The fonts are built into the theme. Istari never loads anything from the internet.
 
 | | |
 | --- | --- |
-| ![Theorem, proof, a booktabs table and a warning callout](docs/img/callouts-tables.png) | ![Live Preview with sidenotes in the margin](docs/img/live-preview.png) |
-| ![A note with the vellum class, set for long-form reading](docs/img/vellum.png) | ![Graph view](docs/img/graph.png) |
+| ![Theorem and proof callouts, a booktabs table and a warning](docs/img/callouts-tables.png) | ![Live Preview with sidenotes](docs/img/live-preview.png) |
+| ![A long-form note with the vellum class](docs/img/vellum.png) | ![The graph view as a star chart](docs/img/graph.png) |
 
-<p align="center"><img src="docs/img/mobile.png" width="300" alt="Istari on a phone, with a sidenote opened in place"></p>
+## Install
 
-## Installation
+In Obsidian: **Settings → Appearance → Themes → Manage**, search for **Istari**, then **Install and use**.
 
-### From Obsidian
+Or by hand: download `theme.css` and `manifest.json` from the [latest release](https://github.com/TheScholium/istari/releases/latest) into `<your vault>/.obsidian/themes/Istari/`.
 
-1. Open **Settings → Appearance**.
-2. Under **Themes**, select **Manage**.
-3. Search for **Istari**, then select **Install and use**.
+Requires Obsidian 1.8 or later. Istari is dark only; it stays dark even if Obsidian is set to light.
 
-### Manually
+## Writing with it
 
-1. Download `theme.css` and `manifest.json` from the [latest release](https://github.com/TheScholium/istari/releases/latest).
-2. Put both files in `<your vault>/.obsidian/themes/Istari/`.
-3. Restart Obsidian, then select Istari under **Settings → Appearance → Themes**.
-
-## Mathematical callouts
-
-Write a callout with one of these types:
+**Callouts.** Write the type, and Istari adds the label:
 
 ```markdown
 > [!theorem] Transport is an isometry
 > If $\nabla$ is compatible with $g$, then $P^\gamma$ is a linear isometry.
 
 > [!proof]
-> Metric compatibility gives $\frac{d}{dt} g(V,W) = 0$.
+> Metric compatibility gives $\frac{d}{dt}\, g(V,W) = 0$.
 ```
 
-| Type | Short form | Title prefix | Body |
-| --- | --- | --- | --- |
-| `theorem` | `thm` | Theorem: | italic |
-| `definition` | `def` | Definition: | upright |
-| `lemma` | | Lemma: | italic |
-| `proposition` | | Proposition: | italic |
-| `corollary` | | Corollary: | italic |
-| `axiom` | | Axiom: | italic |
-| `conjecture` | | Conjecture: | italic |
-| `proof` | | *Proof:* | upright, ends with ∎ |
-| `example` | | Example: | upright |
-| `remark` | | Remark: | upright |
-| `intuition` | | Intuition: | upright |
-| `exercise` | | Exercise: | upright |
+Add `|plain` to drop the label: `> [!theorem|plain] Stokes`. Short forms work too: `thm` and `def`.
 
-- Every callout uses the same gold. Types are told apart by icon, title, and italics, so a page full of results stays calm.
-- The warning family (`warning`, `caution`, `danger`, `error`, `bug`, `failure`, `missing`) uses a pale red.
-- To remove the title prefix, add `|plain`: `> [!theorem|plain] Stokes`.
-- Without the companion plugin, an untitled callout shows its type twice ("Theorem: Theorem"). The plugin removes the second one.
-
-## Sidenotes
-
-Sidenotes need the [companion plugin](#companion-plugin).
+**Sidenotes.** Write normal footnotes. With the companion plugin, they move to the margin:
 
 ```markdown
-A connection supplies the missing rule, but only along a curve.^[On flat space
-the rule is trivial: keep the components constant.]
-
-The solution is unique.^[? Does this hold for piecewise smooth curves?]
+A connection supplies the missing rule, but only along a curve.^[On flat
+space the rule is trivial: keep the components constant.]
 ```
 
-- Inline footnotes `^[...]` and labelled footnotes `[^1]` both become sidenotes.
-- A note that begins with `? ` is a **query**. It is labelled in green, so open questions are easy to find later.
-- When the note pane is 980 px wide or more, notes sit in the right-hand margin. In a narrow pane or on a phone, select the number to open the note under its line.
-- In Live Preview, put the cursor in the note's source to edit it.
-- On screen, the footnote list at the end of the note is hidden. When you export to PDF, the footnotes print at the end as usual.
+**Vellum.** For essays and long reading notes, add `cssclasses: vellum` to the properties. The column gets narrower, the type gets bigger, and the text is justified.
 
-## Vellum, for long-form writing
+**PDF export.** Istari prints in dark ink on white paper, keeps headings with their text, and does not split a callout or a table across two pages.
 
-Add the `vellum` class to a note for a narrower, justified column and larger type:
+## The small print
 
-```yaml
----
-cssclasses: vellum
----
-```
+- Plugins that use Obsidian's color variables pick up Istari's muted palette by themselves. [Integrated Task Manager](https://github.com/kuberrr0/obsidian-integrated-tasks) has its own styling.
+- Canvas cards and the graph view use the same palette. The ribbon icons are replaced with hand-drawn ones: a loupe, a codex, a key, an hourglass.
+- Code: [MIT](LICENSE). Fonts: [SIL Open Font License 1.1](LICENSES/OFL-1.1.txt).
 
-## Export to PDF
-
-Istari prints in dark ink on white paper. The gold and green are darkened so they keep their contrast. Headings stay with the text that follows them, and callouts, tables, and display math do not split across pages.
-
-## Plugin support
-
-- [Integrated Task Manager](https://github.com/kuberrr0/obsidian-integrated-tasks): panels, chips, and calendar headings in the theme's style.
-- Canvas: node colors 1 to 6 use the theme's palette.
-- Any plugin that uses Obsidian's color variables (`--color-red`, `--color-green`, and others) gets the muted palette automatically.
-
-## Companion plugin
-
-**Istari Companion** is optional. The theme works without it. It adds three things that CSS alone cannot do:
-
-1. **Sidenotes**, described above.
-2. **Callout shorthand.** Type `THEOREM`, `DEFINITION`, `LEMMA`, `PROOF`, or another type name at the start of a line, then a space, colon, or Enter. The line becomes `> [!theorem] `. One undo restores the word.
-3. **Clean untitled callouts.** It removes the duplicate type name from callouts that have no title.
-
-To install it:
-
-1. Download `istari-companion.zip` from the [latest release](https://github.com/TheScholium/istari/releases/latest) and unzip it.
-2. Put the `istari-companion` folder in `<your vault>/.obsidian/plugins/`.
-3. Restart Obsidian. Under **Settings → Community plugins**, turn on **Istari Companion**.
-
-## License
-
-- The theme and the companion plugin: [MIT](LICENSE).
-- The embedded fonts, EB Garamond, Cormorant Garamond, and JetBrains Mono: [SIL Open Font License 1.1](LICENSES/OFL-1.1.txt).
-
-Made by [The Scholium](https://github.com/TheScholium). Also see the [Scholium study templates](https://thescholium.github.io/scholium) for Supernote and reMarkable.
+Made by [The Scholium](https://github.com/TheScholium), who also makes [study templates](https://thescholium.github.io/scholium) for Supernote and reMarkable.
