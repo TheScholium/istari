@@ -1,16 +1,14 @@
 <p align="center"><img src="docs/img/banner.png" alt="Istari, a theme for Obsidian" width="100%"></p>
 
-Istari is the Obsidian theme I wanted while reading a differential geometry textbook at two in the morning. Most dark themes are built for code. I wanted one built for a book: a warm, dim page, Garamond type, theorems that look like theorems, and somewhere to put the arguments I have with the author.
+Istari is the Obsidian theme I wanted while reading a differential geometry textbook at two in the morning. I wanted one built for a book: a warm, dim page, Garamond type, theorems that look like theorems, etc... but in a beautiful, easy-on-the-eye dark color scheme.
 
 **[See it in full →](https://thescholium.github.io/istari)**
 
 ![A note in Istari: definition and theorem callouts, display math, and sidenotes in the margin](docs/img/reading-view.png)
 
-## What makes it different
+**It is set like a book.** EB Garamond for text, Cormorant Garamond for titles, JetBrains Mono for code. Old-style figures in sentences, lining figures in tables. Bold and links are small capitals instead of heavy black. Tables use horizontal rules only. (I have a thing for old math books.)
 
-**It is set like a book.** EB Garamond for text, Cormorant Garamond for titles, JetBrains Mono for code. Old-style figures in sentences, lining figures in tables. Bold and links are small capitals instead of heavy black. Tables use horizontal rules only, the way a printed paper sets them.
-
-**Theorems look like theorems.** There are callouts for `theorem`, `definition`, `lemma`, `proposition`, `corollary`, `proof`, `axiom`, `conjecture`, `example`, `remark`, `intuition` and `exercise`. Results are set in italics. Proofs end with ∎. Every callout uses the same gold, so a page with twelve of them still reads calmly. Only warnings turn a pale red.
+**Theorems look like theorems.** There are callouts for `theorem`, `definition`, `lemma`, `proposition`, `corollary`, `proof`, `axiom`, `conjecture`, `example`, `remark`, `intuition` and `exercise`. Results are set in italics. Proofs end with ∎. Every callout uses the same gold, so a page with twelve of them won't make your head hurt. Only warnings turn a pale red.
 
 **Footnotes go in the margin**, with the free [Istari Companion](https://github.com/TheScholium/istari-companion) plugin. Start one with `? ` and it becomes a *query*, so your open questions stand out from your explanations.
 
@@ -53,8 +51,6 @@ space the rule is trivial: keep the components constant.]
 **Vellum.** For essays and long reading notes, add `cssclasses: vellum` to the properties. The column gets narrower, the type gets bigger, and the text is justified.
 
 **PDF export.** Istari prints in dark ink on white paper, keeps headings with their text, and does not split a callout or a table across two pages.
-
-## The small print
 
 - Plugins that use Obsidian's color variables pick up Istari's muted palette by themselves. [Integrated Task Manager](https://github.com/kuberrr0/obsidian-integrated-tasks) has its own styling.
 - Canvas cards and the graph view use the same palette. The ribbon icons are replaced with hand-drawn ones: a loupe, a codex, a key, an hourglass.
