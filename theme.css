@@ -58,7 +58,7 @@
 /* --------------------------------------------------------------------------
    1. Palette and tokens (applied to both themes so the app never goes light)
    .print is listed so derived tokens (--h1-color etc.) re-resolve against the
-   paper palette in section 12 when exporting to PDF.
+   paper palette in section 18 when exporting to PDF.
    -------------------------------------------------------------------------- */
 body,
 .theme-dark,
@@ -86,10 +86,12 @@ body,
   --ist-slate: #7f93b4;
   --ist-plum: #a07f98;
   --ist-oxblood: #b0584a;
+  --ist-text-vellum: #dcd2b8;
 
   /* Callout pigments as RGB triplets: gold for everything, a pale red of
      matched contrast (7.8:1) for the warning family */
-  --ist-callout-rgb: 196, 162, 77;
+  --ist-gold-rgb: 196, 162, 77;
+  --ist-callout-rgb: var(--ist-gold-rgb);
   --ist-warn-rgb: 213, 151, 141;
 
   /* Accent (Obsidian derives interactive states from these) */
@@ -129,8 +131,8 @@ body,
   --background-modifier-border: var(--ist-rule);
   --background-modifier-border-hover: #3a3327;
   --background-modifier-border-focus: var(--ist-gold-dim);
-  --background-modifier-hover: rgba(196, 162, 77, 0.07);
-  --background-modifier-active-hover: rgba(196, 162, 77, 0.13);
+  --background-modifier-hover: rgba(var(--ist-gold-rgb), 0.07);
+  --background-modifier-active-hover: rgba(var(--ist-gold-rgb), 0.13);
   --background-modifier-form-field: var(--ist-bg-0);
   --background-modifier-cover: rgba(8, 7, 6, 0.85);
   --titlebar-background: var(--ist-bg-0);
@@ -143,8 +145,8 @@ body,
   --text-on-accent: #14110b;
   --text-accent: var(--ist-gold);
   --text-accent-hover: #d9b965;
-  --text-selection: rgba(196, 162, 77, 0.24);
-  --text-highlight-bg: rgba(196, 162, 77, 0.2);
+  --text-selection: rgba(var(--ist-gold-rgb), 0.24);
+  --text-highlight-bg: rgba(var(--ist-gold-rgb), 0.2);
   --caret-color: var(--ist-gold);
 
   /* Links */
@@ -262,11 +264,11 @@ body,
    -------------------------------------------------------------------------- */
 .workspace-leaf-content[data-type="markdown"] .view-content {
   background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(196, 162, 77, 0.045) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(var(--ist-gold-rgb), 0.045) 0%, transparent 70%),
     var(--ist-bg-1);
 }
 
-::selection { background: rgba(196, 162, 77, 0.28); }
+::selection { background: var(--text-selection); }
 
 /* --------------------------------------------------------------------------
    3. Prose: rhythm, headings, ornaments
@@ -346,10 +348,11 @@ strong .MathJax, .cm-strong .MathJax { text-transform: none; }
 /* Bold inside headings and table headers is already small-caps; avoid stacking spacing */
 h3 strong, h4 strong, h5 strong, thead strong { letter-spacing: inherit; }
 em, .cm-em { font-style: italic; }
+/* Highlighted text keeps the text colour (Obsidian sets it on mark and
+   .cm-highlight); only the gold wash comes from --text-highlight-bg. */
 mark, .cm-highlight {
   border-radius: 1px;
   padding: 0 0.1em;
-  color: var(--ist-gold-dim);
 }
 
 /* Links: small caps like bold, in brighter gold, underlined */
@@ -404,11 +407,11 @@ mark, .cm-highlight {
   letter-spacing: 0.05em;
   font-size: 0.9em;
   padding: 0 0.5em;
-  border: 1px solid rgba(196, 162, 77, 0.3);
+  border: 1px solid rgba(var(--ist-gold-rgb), 0.3);
   border-radius: 2px;
   text-decoration: none;
 }
-.tag:hover { border-color: var(--ist-gold); background: rgba(196, 162, 77, 0.08); }
+.tag:hover { border-color: var(--ist-gold); background: rgba(var(--ist-gold-rgb), 0.08); }
 
 /* Code */
 .markdown-rendered code,
@@ -477,7 +480,7 @@ mark, .cm-highlight {
   color: var(--bold-color);
 }
 .markdown-source-view :is(.cm-highlight:not(.cm-formatting) + .math, .math:has(+ .cm-highlight:not(.cm-formatting))) {
-  color: var(--ist-gold-dim);
+  color: var(--text-normal);
 }
 .markdown-source-view .HyperMD-header-1 .math { color: var(--h1-color); }
 .markdown-source-view .HyperMD-header-2 .math { color: var(--h2-color); }
@@ -552,7 +555,7 @@ body .callout:is([data-callout="warning"], [data-callout="caution"], [data-callo
 
 /* Titles read "[icon] Type: Custom Title", or "[icon] Type:" when untitled.
    Obsidian fills an untitled callout's title with its type name, which CSS
-   cannot tell apart from a typed title; the Istari Callouts plugin marks those
+   cannot tell apart from a typed title; the Istari Companion plugin marks those
    with data-istari-untitled, and the rule below hides the duplicate.
    [!type|plain] still drops the prefix entirely. */
 .callout[data-callout="theorem"] .callout-title-inner::before,
@@ -694,7 +697,7 @@ body .callout:is([data-callout="warning"], [data-callout="caution"], [data-callo
 .nav-folder-title { font-variant: small-caps; letter-spacing: 0.05em; color: var(--ist-text-muted); }
 .nav-file-title.is-active,
 .tree-item-self.is-active {
-  background: rgba(196, 162, 77, 0.08);
+  background: rgba(var(--ist-gold-rgb), 0.08);
   color: var(--ist-gold);
   box-shadow: inset 2px 0 0 var(--ist-gold-dim);
 }
@@ -720,13 +723,13 @@ body .callout:is([data-callout="warning"], [data-callout="caution"], [data-callo
 }
 .suggestion-item.is-selected,
 .menu-item:hover {
-  background: rgba(196, 162, 77, 0.1);
+  background: rgba(var(--ist-gold-rgb), 0.1);
 }
 
 button.mod-cta,
 .mod-cta {
   background: var(--ist-gold-dim);
-  color: #14110b;
+  color: var(--text-on-accent);
   border-radius: 2px;
   font-variant: small-caps;
   letter-spacing: 0.05em;
@@ -750,7 +753,7 @@ input[type='checkbox']:checked { background-color: var(--ist-gold-dim); }
 
 /* Search highlight and find bar */
 .search-result-file-matched-text,
-.cm-searchMatch { background: rgba(196, 162, 77, 0.25); color: var(--ist-text-bright); }
+.cm-searchMatch { background: rgba(var(--ist-gold-rgb), 0.25); color: var(--ist-text-bright); }
 
 /* --------------------------------------------------------------------------
    8. Integrated Task Manager (plugin id: integrated-task-manager)
@@ -792,7 +795,7 @@ body .tm-calendar-weekday {
 
 /* Task manager's own sidebar navigation follows the file explorer */
 body .tm-nav-item.is-active {
-  background: rgba(196, 162, 77, 0.08);
+  background: rgba(var(--ist-gold-rgb), 0.08);
   color: var(--ist-gold);
   box-shadow: inset 2px 0 0 var(--ist-gold-dim);
 }
@@ -802,8 +805,8 @@ body .tm-empty { font-style: italic; color: var(--ist-text-faint); }
 /* --------------------------------------------------------------------------
    9. Canvas
    Node colors 1-6 resolve to the palette through --color-*-rgb in section 1:
-   1 oxblood, 2 copper, 3 gold, 4 verdigris, 5 steel blue, 6 plum. These match
-   the callout colors, so a canvas and a note share one visual grammar.
+   1 oxblood, 2 copper, 3 gold, 4 verdigris, 5 steel blue, 6 plum, the same
+   pigments that tasks, tags and the graph use.
    -------------------------------------------------------------------------- */
 body,
 .theme-dark,
@@ -833,7 +836,7 @@ body .canvas-edges .canvas-display-path {
   opacity: 0.85;
 }
 body .canvas-edges {
-  filter: drop-shadow(0 0 2.5px rgba(196, 162, 77, 0.22));
+  filter: drop-shadow(0 0 2.5px rgba(var(--ist-gold-rgb), 0.22));
 }
 body .canvas-path-end { opacity: 0.85; }
 
@@ -905,22 +908,22 @@ body .embedded-backlinks .search-result-file-matched-text {
 }
 
 /* --------------------------------------------------------------------------
-   10b. Graph view (the star chart)
+   11. Graph view (the star chart)
    The canvas itself is coloured through the --graph-* tokens in section 1;
    the legacy .color-* classes are set as well for older builds. Labels are
    drawn on canvas, so small-caps cannot be applied to them.
    -------------------------------------------------------------------------- */
 
-.graph-view.color-fill            { color: #a78a4a; }
-.graph-view.color-fill-focused    { color: #ecca70; }
-.graph-view.color-fill-highlight  { color: #ecca70; }
+.graph-view.color-fill            { color: var(--graph-node); }
+.graph-view.color-fill-focused    { color: var(--graph-node-focused); }
+.graph-view.color-fill-highlight  { color: var(--graph-node-focused); }
 .graph-view.color-fill-tag        { color: var(--ist-verdigris); }
 .graph-view.color-fill-attachment { color: var(--ist-slate); }
-.graph-view.color-fill-unresolved { color: #6f4137; }
-.graph-view.color-arrow           { color: #8f7639; }
-.graph-view.color-circle          { color: #ecca70; }
-.graph-view.color-line            { color: #3d3527; }
-.graph-view.color-text            { color: #bcb196; }
+.graph-view.color-fill-unresolved { color: var(--graph-node-unresolved); }
+.graph-view.color-arrow           { color: var(--ist-gold-dim); }
+.graph-view.color-circle          { color: var(--graph-node-focused); }
+.graph-view.color-line            { color: var(--graph-line); }
+.graph-view.color-text            { color: var(--graph-text); }
 
 .workspace-leaf-content[data-type="graph"],
 .workspace-leaf-content[data-type="localgraph"] {
@@ -929,7 +932,7 @@ body .embedded-backlinks .search-result-file-matched-text {
 .workspace-leaf-content[data-type="graph"] .view-content,
 .workspace-leaf-content[data-type="localgraph"] .view-content {
   background:
-    radial-gradient(ellipse at 50% 55%, rgba(196, 162, 77, .045), transparent 62%),
+    radial-gradient(ellipse at 50% 55%, rgba(var(--ist-gold-rgb), .045), transparent 62%),
     var(--ist-bg-0);
 }
 
@@ -968,7 +971,7 @@ body .embedded-backlinks .search-result-file-matched-text {
   font-variant: small-caps;
   letter-spacing: .05em;
 }
-.graph-controls .mod-cta:hover { background: rgba(196, 162, 77, .10); }
+.graph-controls .mod-cta:hover { background: rgba(var(--ist-gold-rgb), .10); }
 .graph-controls input[type="range"] { accent-color: var(--ist-gold); }
 
 .graph-controls .graph-control-section .tree-item-icon,
@@ -977,7 +980,7 @@ body .embedded-backlinks .search-result-file-matched-text {
 .graph-controls .graph-controls-button:hover { color: var(--ist-gold); }
 
 /* --------------------------------------------------------------------------
-   10c. Ornaments
+   12. Ornaments
    -------------------------------------------------------------------------- */
 
 /* Section ornament: a small four-pointed star before each h2 */
@@ -995,7 +998,7 @@ body .embedded-backlinks .search-result-file-matched-text {
 }
 
 /* --------------------------------------------------------------------------
-   10d. Small refinements
+   13. Small refinements
    -------------------------------------------------------------------------- */
 
 /* Status bar in small-caps */
@@ -1015,11 +1018,12 @@ body .embedded-backlinks .search-result-file-matched-text {
   --p-spacing: 1.1em;
 }
 .markdown-preview-view.vellum .markdown-rendered,
-.markdown-preview-view.vellum p { color: #dcd2b8; }
+.markdown-preview-view.vellum p,
+.markdown-source-view.vellum .cm-line:not([class*="HyperMD-header"], .HyperMD-quote, .HyperMD-codeblock) { color: var(--ist-text-vellum); }
 .markdown-preview-view.vellum p { text-align: justify; hyphens: auto; }
 
 /* --------------------------------------------------------------------------
-   11. Icons: period-appropriate replacements for the ribbon and sidebar tabs.
+   14. Icons: period-appropriate replacements for the ribbon and sidebar tabs.
    Each Lucide icon is hidden and re-drawn as a mask filled with currentColor,
    so hover, active and gold accent states carry over unchanged. Scoped to the
    ribbon and tab headers; icons elsewhere in the app are left alone.
@@ -1111,13 +1115,13 @@ body .embedded-backlinks .search-result-file-matched-text {
 }
 
 /* --------------------------------------------------------------------------
-   10e. Sidenotes (requires the Istari Companion plugin)
+   15. Footnotes and sidenotes (requires the Istari Companion plugin)
    Write an aside as an inline footnote:   ...= T^1_0(V).^[See [[Mixed Tensor]].]
    Begin it with "? " to mark a query:     ^[? Does this hold in infinite-D?]
    Wide pane (the plugin marks it .istari-sn-wide): notes sit in a right-hand
    margin column beside their line. Narrow pane, mobile, embeds, tables: the
    number opens the note in place. In Live Preview the source returns when
-   the cursor enters it. Export to PDF prints ordinary footnotes (section 12).
+   the cursor enters it. Export to PDF prints ordinary footnotes (section 18).
    -------------------------------------------------------------------------- */
 body,
 .theme-dark,
@@ -1269,7 +1273,6 @@ body.istari-companion .istari-has-sidenotes .markdown-preview-view section.footn
 body.istari-companion section.footnotes.istari-converted { display: none; }
 
 /* Footnotes themselves (print, or without the plugin) */
-.markdown-rendered section.footnotes { font-size: 0.85em; color: var(--ist-text-muted); }
 .markdown-rendered section.footnotes hr { margin: 2em 0 1em; }
 .markdown-rendered section.footnotes li::marker { color: var(--ist-gold-dim); font-variant-numeric: lining-nums; }
 
@@ -1280,7 +1283,7 @@ body.istari-companion section.footnotes.istari-converted { display: none; }
 }
 
 /* --------------------------------------------------------------------------
-   11b. Live Preview parity
+   16. Live Preview parity
    Reading view styles elements through .markdown-rendered; Live Preview
    builds the same elements as CodeMirror lines with different classes. Each
    rule below mirrors a Reading view rule from section 3 so both modes agree.
@@ -1370,16 +1373,16 @@ body.istari-companion section.footnotes.istari-converted { display: none; }
   font-size: 0.9em;
   color: var(--tag-color);
   background: transparent;
-  border-top: 1px solid rgba(196, 162, 77, 0.3);
-  border-bottom: 1px solid rgba(196, 162, 77, 0.3);
+  border-top: 1px solid rgba(var(--ist-gold-rgb), 0.3);
+  border-bottom: 1px solid rgba(var(--ist-gold-rgb), 0.3);
 }
 .markdown-source-view.mod-cm6 .cm-hashtag-begin {
-  border-left: 1px solid rgba(196, 162, 77, 0.3);
+  border-left: 1px solid rgba(var(--ist-gold-rgb), 0.3);
   border-radius: 2px 0 0 2px;
   padding-left: 0.5em;
 }
 .markdown-source-view.mod-cm6 .cm-hashtag-end {
-  border-right: 1px solid rgba(196, 162, 77, 0.3);
+  border-right: 1px solid rgba(var(--ist-gold-rgb), 0.3);
   border-radius: 0 2px 2px 0;
   padding-right: 0.5em;
 }
@@ -1388,7 +1391,7 @@ body.istari-companion section.footnotes.istari-converted { display: none; }
    --link-unresolved-decoration-* tokens (section 1). */
 
 /* --------------------------------------------------------------------------
-   11c. Mobile
+   17. Mobile
    Smaller text and margins so the column is not starved on a phone; hover-
    only reveals become always visible, since touch has no hover.
    -------------------------------------------------------------------------- */
@@ -1421,11 +1424,11 @@ body.is-mobile .metadata-property-icon { opacity: 0.6; }
 body.is-mobile .embedded-backlinks .clickable-icon { opacity: 0.8; }
 
 /* --------------------------------------------------------------------------
-   12. Print and Export to PDF
+   18. Print and Export to PDF
    The screen palette is light-on-dark, but paper is white. Obsidian renders
    exports inside a .print container (and under @media print), so the tokens
    are redefined there as dark ink on paper. Everything downstream reads the
-   tokens, so headings, bold, links, rules and the initial follow along.
+   tokens, so headings, bold, links and rules follow along.
    -------------------------------------------------------------------------- */
 @media print {
   body, .theme-dark, .theme-light, .print { color-scheme: light; }
@@ -1455,6 +1458,7 @@ body.is-mobile .embedded-backlinks .clickable-icon { opacity: 0.8; }
   --ist-slate: #44597a;
   --ist-plum: #6c4d64;
   --ist-oxblood: #8a3a2e;
+  --ist-text-vellum: var(--ist-text);
   --ist-callout-rgb: 125, 98, 36;
   --ist-warn-rgb: 150, 66, 52;
 
@@ -1473,7 +1477,7 @@ body.is-mobile .embedded-backlinks .clickable-icon { opacity: 0.8; }
   --code-string: #5a4a2a;
   --code-value: #5a4a2a;
   --hr-color: var(--ist-rule);
-  --text-highlight-bg: rgba(196, 162, 77, 0.28);
+  --text-highlight-bg: rgba(var(--ist-gold-rgb), 0.28);
 
   /* Print measure and size: points, full page width */
   --font-text-size: 11.5pt;
@@ -1484,7 +1488,7 @@ body.is-mobile .embedded-backlinks .clickable-icon { opacity: 0.8; }
   color: var(--ist-text);
 }
 
-/* Keep the gold pigments and initial's fill when the browser would drop them */
+/* Keep the gold pigments when the browser would drop them */
 .print * {
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
@@ -1495,7 +1499,7 @@ body.is-mobile .embedded-backlinks .clickable-icon { opacity: 0.8; }
 .print .markdown-preview-view { background: #ffffff; }
 
 /* Sidenotes print as ordinary footnotes at the end of the note. The body
-   prefix and doubled classes outrank the screen rules in section 10e. */
+   prefix and doubled classes outrank the screen rules in section 15. */
 body .print .istari-sidenote,
 body .print .istari-sidenote.is-open { display: none; }
 body .print section.footnotes,
